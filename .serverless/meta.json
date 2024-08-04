@@ -2332,5 +2332,563 @@
     "serviceProviderAwsCfStackUpdated": null,
     "serviceProviderAwsCfStackStatus": null,
     "serviceProviderAwsCfStackOutputs": null
+  },
+  "C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.19",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "aws": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "silassantosdev",
+            "app": "crud-serverless",
+            "service": "crud-serverless",
+            "frameworkVersion": "4",
+            "plugins": [
+              "serverless-dynamodb-local",
+              "serverless-offline"
+            ],
+            "custom": {
+              "tableName": "users-table-dev",
+              "isOffline": true,
+              "dynamodb": {
+                "stages": [
+                  "dev"
+                ],
+                "start": {
+                  "port": 8000,
+                  "inMemory": true,
+                  "migrate": true
+                }
+              }
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "environment": {
+                "USERS_TABLE": "users-table-dev",
+                "IS_OFFLINE": true
+              },
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "stage": "dev",
+              "region": "us-east-1",
+              "versionFunctions": true
+            },
+            "functions": {
+              "api": {
+                "handler": "handler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "get"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "post"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "put"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ]
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "userId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "userId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "package": {
+              "individually": true
+            }
+          },
+          "configFileDirPath": "C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless",
+          "config": {
+            "type": "aws"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "isDefaultConfig": true
+        },
+        "resolvers": {}
+      },
+      "sls": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "silassantosdev",
+            "app": "crud-serverless",
+            "service": "crud-serverless",
+            "frameworkVersion": "4",
+            "plugins": [
+              "serverless-dynamodb-local",
+              "serverless-offline"
+            ],
+            "custom": {
+              "tableName": "users-table-dev",
+              "isOffline": true,
+              "dynamodb": {
+                "stages": [
+                  "dev"
+                ],
+                "start": {
+                  "port": 8000,
+                  "inMemory": true,
+                  "migrate": true
+                }
+              }
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "environment": {
+                "USERS_TABLE": "users-table-dev",
+                "IS_OFFLINE": true
+              },
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "stage": "dev",
+              "region": "us-east-1",
+              "versionFunctions": true
+            },
+            "functions": {
+              "api": {
+                "handler": "handler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "get"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "post"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "put"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ]
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "userId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "userId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "package": {
+              "individually": true
+            }
+          },
+          "configFileDirPath": "C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless",
+          "config": {
+            "type": "sls"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null
+        },
+        "resolvers": {}
+      },
+      "self": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "silassantosdev",
+            "app": "crud-serverless",
+            "service": "crud-serverless",
+            "frameworkVersion": "4",
+            "plugins": [
+              "serverless-dynamodb-local",
+              "serverless-offline"
+            ],
+            "custom": {
+              "tableName": "users-table-dev",
+              "isOffline": true,
+              "dynamodb": {
+                "stages": [
+                  "dev"
+                ],
+                "start": {
+                  "port": 8000,
+                  "inMemory": true,
+                  "migrate": true
+                }
+              }
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "environment": {
+                "USERS_TABLE": "users-table-dev",
+                "IS_OFFLINE": true
+              },
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "stage": "dev",
+              "region": "us-east-1",
+              "versionFunctions": true
+            },
+            "functions": {
+              "api": {
+                "handler": "handler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "get"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "post"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "put"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "users/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ]
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "userId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "userId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "package": {
+              "individually": true
+            }
+          },
+          "configFileDirPath": "C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless",
+          "config": {
+            "type": "self"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "silassantosdev",
+      "app": "crud-serverless",
+      "service": "crud-serverless",
+      "frameworkVersion": "4",
+      "plugins": [
+        "serverless-dynamodb-local",
+        "serverless-offline"
+      ],
+      "custom": {
+        "tableName": "users-table-dev",
+        "isOffline": true,
+        "dynamodb": {
+          "stages": [
+            "dev"
+          ],
+          "start": {
+            "port": 8000,
+            "inMemory": true,
+            "migrate": true
+          }
+        }
+      },
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "environment": {
+          "USERS_TABLE": "users-table-dev",
+          "IS_OFFLINE": true
+        },
+        "iam": {
+          "role": {
+            "statements": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query",
+                  "dynamodb:Scan",
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": [
+                  {
+                    "Fn::GetAtt": [
+                      "UsersTable",
+                      "Arn"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true
+      },
+      "functions": {
+        "api": {
+          "handler": "handler.handler",
+          "events": [
+            {
+              "http": {
+                "path": "users/{userId}",
+                "method": "get"
+              }
+            },
+            {
+              "http": {
+                "path": "users",
+                "method": "post"
+              }
+            },
+            {
+              "http": {
+                "path": "users/{userId}",
+                "method": "put"
+              }
+            },
+            {
+              "http": {
+                "path": "users/{userId}",
+                "method": "delete"
+              }
+            }
+          ]
+        }
+      },
+      "resources": {
+        "Resources": {
+          "UsersTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "userId",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "userId",
+                  "KeyType": "HASH"
+                }
+              ],
+              "BillingMode": "PAY_PER_REQUEST",
+              "TableName": "users-table-dev"
+            }
+          }
+        }
+      },
+      "package": {
+        "individually": true
+      }
+    },
+    "serviceRawFile": "org: silassantosdev\r\napp: crud-serverless\r\nservice: crud-serverless\r\nframeworkVersion: \"4\"\r\n\r\nplugins:\r\n  - serverless-dynamodb-local\r\n  - serverless-offline\r\n\r\ncustom:\r\n  tableName: \"users-table-${sls:stage}\"\r\n  isOffline: true\r\n  dynamodb:\r\n    stages:\r\n      - dev\r\n    start:\r\n      port: 8000\r\n      inMemory: true\r\n      migrate: true\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  environment:\r\n    USERS_TABLE: ${self:custom.tableName}\r\n    IS_OFFLINE: ${self:custom.isOffline}\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:Query\r\n            - dynamodb:Scan\r\n            - dynamodb:GetItem\r\n            - dynamodb:PutItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n          Resource:\r\n            - Fn::GetAtt: [UsersTable, Arn]\r\n\r\nfunctions:\r\n  api:\r\n    handler: handler.handler\r\n    events:\r\n      - http:\r\n          path: users/{userId}\r\n          method: get\r\n      - http:\r\n          path: users\r\n          method: post\r\n      - http:\r\n          path: users/{userId}\r\n          method: put\r\n      - http:\r\n          path: users/{userId}\r\n          method: delete\r\n\r\nresources:\r\n  Resources:\r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        AttributeDefinitions:\r\n          - AttributeName: userId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: userId\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n        TableName: ${self:custom.tableName}\r\n\r\npackage:\r\n  individually: true\r\n",
+    "command": [
+      "offline",
+      "start"
+    ],
+    "options": {},
+    "error": {
+      "message": "Class extends value undefined is not a constructor or null",
+      "stack": "TypeError: Class extends value undefined is not a constructor or null\n    at new module.exports (C:\\Users\\silas\\OneDrive\\Área de Trabalho\\basic-crud-serverless\\node_modules\\serverless-dynamodb-local\\index.js:11:43)\n    at PluginManager.addPlugin (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:854:273)\n    at file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:854:1435\n    at Array.forEach (<anonymous>)\n    at PluginManager.loadAllPlugins (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:854:1413)\n    at async Serverless.init (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:861:9760)\n    at async runFramework (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:909:880)\n    at async route (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:920:16304)\n    at async Object.run2 [as run] (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:920:16702)\n    at async run3 (file:///C:/Users/silas/.serverless/releases/4.1.19/package/dist/sf-core.js:920:17962)"
+    },
+    "params": {},
+    "machineId": "e7111cb526adde0292ba9d6305665523",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "62e7b7d4-7a97-49de-b2d9-aee09631d353",
+    "orgName": "silassantosdev",
+    "userId": "2r6FM8cQVSdPNHhQz3",
+    "dashboard": {
+      "isEnabledForService": true,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": {
+        "providers": false,
+        "monitoring": false
+      },
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": "KZjGRFfPFtnPSYTSyd",
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "silassantosdev",
+    "subscription": null,
+    "userEmail": "silasoliv39@gmail.com",
+    "versionSf": "4.1.19",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
   }
 }

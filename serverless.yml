@@ -3,6 +3,9 @@ app: crud-serverless
 service: crud-serverless
 frameworkVersion: "4"
 
+plugins:
+  - serverless-offline
+
 custom:
   tableName: "users-table-${sls:stage}"
 
@@ -29,7 +32,9 @@ functions:
   api:
     handler: handler.handler
     events:
-      - httpApi: "*"
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
 
 resources:
   Resources:

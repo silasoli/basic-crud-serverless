@@ -4,7 +4,14 @@ import serverless from "serverless-http";
 
 const app = express();
 const USERS_TABLE = process.env.USERS_TABLE;
-const dynamoDBClient = new AWS.DynamoDB.DocumentClient();
+const IS_OFFLINE = process.env.IS_OFFLINE;
+
+const dynamoDBClient = IS_OFFLINE
+  ? new AWS.DynamoDB.DocumentClient({
+      region: "localhost",
+      endpoint: "http://localhost:8000",
+    })
+  : new AWS.DynamoDB.DocumentClient();
 
 app.use(express.json());
 
